@@ -27,7 +27,7 @@ import java.util.concurrent.Executors;
 public final class WeatherAlertHelper {
 
     private static final double MAX_WIND = 25;
-    private static final String[] BAD_WORDS = {"storm", "thunder"};
+    private static final String[] BAD_WORDS = {"storm", "thunder","flood"};
     private static final int CONN_MS = 8000;
     private static final int READ_MS = 8000;
     private static final ExecutorService EX = Executors.newSingleThreadExecutor();
@@ -90,7 +90,7 @@ public final class WeatherAlertHelper {
                 }
 
                 String response;
-                try (Scanner sc = new Scanner(conn.getInputStream(), StandardCharsets.UTF_8)) {
+                try (Scanner sc = new Scanner(conn.getInputStream(), StandardCharsets.UTF_8.name())) {
                     sc.useDelimiter("\\A");
                     response = sc.hasNext() ? sc.next() : "";
                 }
